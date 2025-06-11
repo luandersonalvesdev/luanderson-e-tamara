@@ -1,0 +1,1 @@
+export const dateFormatter = (value) => value.toString().padStart(2, '0');
