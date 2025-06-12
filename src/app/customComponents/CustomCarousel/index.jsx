@@ -8,18 +8,16 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-export default function CustomCarousel() {
+export default function CustomCarousel({ contents = [] }) {
   return (
-    <Carousel className="w-full max-w-xs">
+    <Carousel className="w-full sm:max-w-7/12">
       <CarouselContent>
-        {Array.from({ length: 2 }).map((_, index) => (
+        {contents.map((node, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
+                <CardContent className="flex items-center justify-center">
+                  <span className="text-4xl font-semibold">{node}</span>
                 </CardContent>
-              </Card>
             </div>
           </CarouselItem>
         ))}

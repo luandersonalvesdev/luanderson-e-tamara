@@ -1,17 +1,19 @@
-'use client'
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration';
-import { dateFormatter } from '@/app/utils/dateFormatter';
+import React, { useEffect, useState } from "react";
+import dayjs from "dayjs";
+import duration from "dayjs/plugin/duration";
+import { dateFormatter } from "@/app/utils/dateFormatter";
+import Image from "next/image";
+import TimeCountCard from "../TimeCountCard";
 
 dayjs.extend(duration);
 
-export default function TimeElapsed({startDate}) {
+const TIME_LABELS = ['Meses', 'Dias', 'Horas', 'Minutos', 'Segundos']
+
+export default function TimeElapsed({ startDate }) {
   const [timePassed, setTimePassed] = useState({
-    years: 0,
     months: 0,
-    weeks: 0,
     days: 0,
     hours: 0,
     minutes: 0,
@@ -24,9 +26,7 @@ export default function TimeElapsed({startDate}) {
       const diff = dayjs.duration(now.diff(startDate));
 
       setTimePassed({
-        years: diff.years(),
         months: diff.months(),
-        weeks: diff.weeks(),
         days: diff.days(),
         hours: diff.hours(),
         minutes: diff.minutes(),
@@ -38,15 +38,15 @@ export default function TimeElapsed({startDate}) {
   }, []);
 
   return (
-    <div>
-      <h1>Tempo desde 01/01/2025:</h1>
-      <p>{dateFormatter(timePassed.years)} anos</p>
-      <p>{dateFormatter(timePassed.months)} meses</p>
-      <p>{dateFormatter(timePassed.weeks)} semanas</p>
-      <p>{dateFormatter(timePassed.days)} dias</p>
-      <p>{dateFormatter(timePassed.hours)} horas</p>
-      <p>{dateFormatter(timePassed.minutes)} minutos</p>
-      <p>{dateFormatter(timePassed.seconds)} segundos</p>
+    <div className="flex flex-col justify-center items-center gap-3">
+      <div class="w-full md:max-w-lg">
+        <img src="/imgs/us.png" alt="us" className="rounded-md"/>
+      </div>
+      <div className="flex text-xs sm:text-base gap-4 sm:gap-8">
+        {Object.values(timePassed).map((time, index) => {
+          return <TimeCountCard value={dateFormatter(time)} label={TIME_LABELS[index]}/>
+        })}
+      </div>
     </div>
   );
 }
