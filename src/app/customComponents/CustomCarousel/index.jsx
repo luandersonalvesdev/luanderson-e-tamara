@@ -1,29 +1,28 @@
-import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
+import * as React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
-export default function CustomCarousel({ contents = [] }) {
+export default function CustomCarousel({ contents = [{}] }) {
   return (
     <Carousel className="w-full sm:max-w-7/12">
       <CarouselContent>
-        {contents.map((node, index) => (
+        {contents.map((content, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-                <CardContent className="flex items-center justify-center">
-                  <span className="text-4xl font-semibold">{node}</span>
-                </CardContent>
-            </div>
+            <CardContent className="flex flex-col gap-5 justify-center items-center text-white font-bold text-xs sm:text-base">
+              <p>{content.title}</p>
+              {content.node}
+            </CardContent>  
           </CarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
+  );
 }
