@@ -10,7 +10,7 @@ import {
 
 export default function CustomCarousel({ contents = [{}] }) {
   return (
-    <Carousel className="w-full sm:max-w-7/12">
+    <Carousel className="w-full sm:max-w-7/12" orientation="vertical">
       <CarouselContent>
         {contents.map((content, index) => (
           <CarouselItem key={index}>

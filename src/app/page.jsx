@@ -1,31 +1,23 @@
 import TimeElapsed from "./customComponents/CustomCarousel/cards/TimeElapsed";
 import CustomCarousel from "./customComponents/CustomCarousel";
-import OurMusic from "./customComponents/CustomCarousel/cards/OurMusic";
+import SpotifyEmbedding from "./customComponents/CustomCarousel/cards/SpotifyEmbedding";
 import WhereWeMet from "./customComponents/CustomCarousel/cards/WhereWeMet";
-
-const CONTENTS = [
-  {
-    node: <TimeElapsed startDate={'2024-12-14T22:00:00'} />,
-    title: 'Tempo juntos'
-  },
-  {
-    node: <OurMusic />,
-    title: 'Nossa musica'
-  },
-  {
-    node: <WhereWeMet />,
-    title: 'Onde nos conhecemos'
-  }
-]
+import MoonAtTheDayWeMet from "./customComponents/CustomCarousel/cards/MoonAtTheDayWeMet";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex justify-center items-center px-16 sm:px-0">
+    <div className="flex w-full justify-center py-8 px-6 text-white text-xs sm:text-base">
       <div
-        className="absolute inset-0 bg-cover bg-center -z-10 filter brightness-30 sm:brightness-15 blur-sm"
-        style={{ backgroundImage: "url('/imgs/us.png')" }}
+        className="fixed inset-0 bg-cover bg-center bg-fixed -z-10 filter brightness-50"
+        style={{ backgroundImage: "url('/imgs/bg.jpg')" }}
       />
-      <CustomCarousel contents={CONTENTS} />
+
+      <div className="flex flex-col sm:max-w-7/12 justify-center gap-20">
+        <SpotifyEmbedding />
+        <TimeElapsed />
+        <WhereWeMet />
+        <MoonAtTheDayWeMet />
+      </div>
     </div>
   );
 }
